@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">FLxBC federated strategy layer</title>
+  <desc id="desc">A comparison of FedAvg, FedProx, and BC-CA-FedProx aggregation strategies in FLxBC, including sample weights, proximal regularization, contribution, reputation, and audit records.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-teal" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f766e"/>
+    </marker>
+    <style>
+      .bg { fill: #ffffff; }
+      .title { font: 700 32px Inter, Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 15px Inter, Arial, Helvetica, sans-serif; fill: #475569; }
+      .lane { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 1.2; rx: 10; }
+      .lane-title { font: 700 18px Inter, Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .label { font: 600 13px Inter, Arial, Helvetica, sans-serif; fill: #111827; }
+      .small { font: 400 12px Inter, Arial, Helvetica, sans-serif; fill: #475569; }
+      .mono { font: 500 12px "SFMono-Regular", Consolas, monospace; fill: #334155; }
+      .node { fill: #ffffff; stroke: #94a3b8; stroke-width: 1.2; rx: 6; }
+      .blue { fill: #eff6ff; stroke: #93c5fd; stroke-width: 1.2; rx: 6; }
+      .teal { fill: #ecfdf5; stroke: #5eead4; stroke-width: 1.2; rx: 6; }
+      .amber { fill: #fffbeb; stroke: #fcd34d; stroke-width: 1.2; rx: 6; }
+      .rose { fill: #fff1f2; stroke: #fda4af; stroke-width: 1.2; rx: 6; }
+      .arrow { stroke: #2563eb; stroke-width: 1.8; fill: none; marker-end: url(#arrow-blue); }
+      .arrow-teal { stroke: #0f766e; stroke-width: 1.8; fill: none; marker-end: url(#arrow-teal); }
+      .dashed { stroke-dasharray: 6 6; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1280" height="720"/>
+  <text class="title" x="56" y="58">Federated Strategy Layer</text>
+  <text class="subtitle" x="56" y="86">The project keeps classical FL baselines and adds blockchain-aware contribution and reputation weighting.</text>
+
+  <rect class="lane" x="56" y="128" width="1168" height="140"/>
+  <text class="lane-title" x="82" y="164">FedAvg baseline</text>
+  <rect class="node" x="96" y="188" width="156" height="50"/>
+  <text class="label" x="124" y="218">client updates</text>
+  <rect class="blue" x="330" y="188" width="190" height="50"/>
+  <text class="mono" x="357" y="218">w_i = n_i / sum n</text>
+  <rect class="amber" x="600" y="188" width="210" height="50"/>
+  <text class="label" x="634" y="218">weighted parameter sum</text>
+  <rect class="teal" x="890" y="188" width="190" height="50"/>
+  <text class="label" x="929" y="218">next global model</text>
+  <path class="arrow" d="M 252 213 L 330 213"/>
+  <path class="arrow" d="M 520 213 L 600 213"/>
+  <path class="arrow" d="M 810 213 L 890 213"/>
+  <text class="small" x="96" y="252">Use case: stable baseline with sample-count weighting and minimal policy assumptions.</text>
+
+  <rect class="lane" x="56" y="300" width="1168" height="150"/>
+  <text class="lane-title" x="82" y="336">FedProx baseline</text>
+  <rect class="node" x="96" y="362" width="176" height="52"/>
+  <text class="label" x="129" y="393">global theta_t</text>
+  <rect class="blue" x="348" y="362" width="330" height="52"/>
+  <text class="mono" x="374" y="393">local loss + mu/2 ||theta-theta_t||^2</text>
+  <rect class="amber" x="760" y="362" width="160" height="52"/>
+  <text class="label" x="793" y="393">local update</text>
+  <rect class="teal" x="990" y="362" width="160" height="52"/>
+  <text class="label" x="1028" y="393">aggregate</text>
+  <path class="arrow" d="M 272 388 L 348 388"/>
+  <path class="arrow" d="M 678 388 L 760 388"/>
+  <path class="arrow" d="M 920 388 L 990 388"/>
+  <text class="small" x="96" y="434">Use case: heterogeneous client data; the proximal term discourages large local drift from the shared model.</text>
+
+  <rect class="lane" x="56" y="482" width="1168" height="170"/>
+  <text class="lane-title" x="82" y="518">BC-CA-FedProx strategy</text>
+  <rect class="node" x="96" y="542" width="138" height="50"/>
+  <text class="label" x="126" y="572">accepted clients</text>
+  <rect class="blue" x="292" y="542" width="180" height="50"/>
+  <text class="mono" x="318" y="572">samples n_i</text>
+  <rect class="blue" x="520" y="542" width="180" height="50"/>
+  <text class="mono" x="545" y="572">contribution c_i</text>
+  <rect class="blue" x="748" y="542" width="180" height="50"/>
+  <text class="mono" x="777" y="572">reputation r_i</text>
+  <rect class="amber" x="976" y="542" width="188" height="50"/>
+  <text class="mono" x="1000" y="572">w_i ~ n_i c_i r_i</text>
+  <path class="arrow-teal" d="M 234 567 L 292 567"/>
+  <path class="arrow-teal" d="M 472 567 L 520 567"/>
+  <path class="arrow-teal" d="M 700 567 L 748 567"/>
+  <path class="arrow-teal" d="M 928 567 L 976 567"/>
+  <rect class="rose" x="292" y="614" width="300" height="28"/>
+  <text class="small" x="314" y="633">misbehavior reduces contribution and reputation</text>
+  <rect class="rose" x="648" y="614" width="286" height="28"/>
+  <text class="small" x="670" y="633">round records are hash-linked in the audit ledger</text>
+  <path class="arrow-teal dashed" d="M 610 592 C 610 604 596 607 592 614"/>
+  <path class="arrow-teal dashed" d="M 1070 592 C 1070 632 958 632 934 628"/>
+  <text class="small" x="96" y="670">Use case: medical FL governance where quality, participation, and audit evidence affect each round's aggregation weight.</text>
+</svg>

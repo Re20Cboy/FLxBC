@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv run *)",
+      "Bash(cat .claude/settings.json)",
+      "Bash(cat .claude/settings.local.json)",
+      "Bash(ls .claude/)",
+      "Read(//Users/lx/Documents/Idea/**)",
+      "Bash(Project/FLxBC/scripts/ /Users/lx/Documents/Idea\\\\&Project/FLxBC/dashboard/)",
+      "Bash(sqlite3 /Users/lx/Documents/Idea\\\\&Project/FLxBC/data/flxbc.db \".tables\")",
+      "Bash(sqlite3 /Users/lx/Documents/Idea)",
+      "Bash(Project/FLxBC/data/flxbc.db \".schema\")",
+      "Bash(sqlite3 '/Users/lx/Documents/Idea&Project/FLxBC/data/flxbc.db' 'SELECT COUNT\\(*\\) FROM __TRACKED_VAR__;')",
+      "Bash(sqlite3 \"/Users/lx/Documents/Idea&Project/FLxBC/data/flxbc.db\" \".schema\")",
+      "Bash(sqlite3 \"/Users/lx/Documents/Idea&Project/FLxBC/data/flxbc.db\" \"SELECT run_id, mode, dataset, strategy FROM runs LIMIT 20;\")",
+      "Bash(sqlite3 \"/Users/lx/Documents/Idea&Project/FLxBC/data/flxbc.db\" \"SELECT run_id, label, metrics FROM experiments LIMIT 12;\")",
+      "Bash(find /Users/lx/.medmnist -type f 2>/dev/null | head -20; echo \"---\"; find /Users/lx/Documents/Idea\\\\&Project/FLxBC -path \"*/medmnist*\" -type f 2>/dev/null | head -20; echo \"---\"; find /Users/lx -maxdepth 4 -type d -name \"medmnist\" 2>/dev/null | head -10)",
+      "Read(//Users/lx/.medmnist/**)",
+      "Read(//Users/lx/**)",
+      "Bash(gh auth *)"
+    ]
+  }
+}

@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="820" viewBox="0 0 1280 820" role="img" aria-labelledby="title desc">
+  <title id="title">FLxBC architecture overview</title>
+  <desc id="desc">A layered overview of the FLxBC system showing control entrypoints, federated orchestration, clients, privacy controls, aggregation, audit ledger, artifacts, and dashboard/API flows.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f766e"/>
+    </marker>
+    <marker id="arrow-gray" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+    <style>
+      .bg { fill: #ffffff; }
+      .title { font: 700 32px Inter, Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 15px Inter, Arial, Helvetica, sans-serif; fill: #475569; }
+      .section-title { font: 700 17px Inter, Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .label { font: 600 14px Inter, Arial, Helvetica, sans-serif; fill: #111827; }
+      .small { font: 400 12px Inter, Arial, Helvetica, sans-serif; fill: #475569; }
+      .mono { font: 500 12px "SFMono-Regular", Consolas, monospace; fill: #334155; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.4; rx: 8; }
+      .box-blue { fill: #eff6ff; stroke: #93c5fd; stroke-width: 1.4; rx: 8; }
+      .box-green { fill: #ecfdf5; stroke: #5eead4; stroke-width: 1.4; rx: 8; }
+      .box-amber { fill: #fffbeb; stroke: #fcd34d; stroke-width: 1.4; rx: 8; }
+      .box-red { fill: #fff1f2; stroke: #fda4af; stroke-width: 1.4; rx: 8; }
+      .panel { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 1.2; rx: 10; }
+      .arrow { fill: none; stroke: #2563eb; stroke-width: 2.2; marker-end: url(#arrow-blue); }
+      .arrow-green { fill: none; stroke: #0f766e; stroke-width: 2.2; marker-end: url(#arrow-green); }
+      .arrow-gray { fill: none; stroke: #64748b; stroke-width: 1.8; marker-end: url(#arrow-gray); }
+      .dashed { stroke-dasharray: 6 6; }
+      .legend-line { stroke-width: 2.2; fill: none; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1280" height="820"/>
+  <text class="title" x="56" y="58">FLxBC: Federated Learning with Blockchain-Audited Privacy Controls</text>
+  <text class="subtitle" x="56" y="86">Research/demo architecture for medical FL experiments, privacy-aware aggregation, auditability, and dashboard analytics.</text>
+
+  <rect class="panel" x="42" y="112" width="260" height="560"/>
+  <text class="section-title" x="62" y="144">Control and Observability</text>
+  <rect class="box-blue" x="62" y="168" width="220" height="82"/>
+  <text class="label" x="82" y="198">Make / CLI</text>
+  <text class="mono" x="82" y="221">run-real-2d / run-real-3d</text>
+
+  <rect class="box-blue" x="62" y="278" width="220" height="92"/>
+  <text class="label" x="82" y="309">Streamlit Dashboard</text>
+  <text class="small" x="82" y="332">metrics, client contribution, audit</text>
+  <text class="small" x="82" y="350">experiment comparison</text>
+
+  <rect class="box-blue" x="62" y="398" width="220" height="92"/>
+  <text class="label" x="82" y="429">FastAPI Service</text>
+  <text class="small" x="82" y="452">run history, artifacts, exports</text>
+  <text class="small" x="82" y="470">token-protected endpoints</text>
+
+  <rect class="box" x="62" y="518" width="220" height="98"/>
+  <text class="label" x="82" y="548">Experiment Config</text>
+  <text class="small" x="82" y="571">dataset, clients, rounds</text>
+  <text class="small" x="82" y="589">privacy mode, DP, auth</text>
+
+  <rect class="panel" x="340" y="112" width="330" height="255"/>
+  <text class="section-title" x="364" y="144">Federated Orchestrator</text>
+  <rect class="box-green" x="365" y="168" width="280" height="70"/>
+  <text class="label" x="386" y="197">simulation.py</text>
+  <text class="small" x="386" y="220">global rounds, client sampling, run state</text>
+
+  <rect class="box" x="365" y="254" width="132" height="68"/>
+  <text class="label" x="385" y="282">Early stop</text>
+  <text class="small" x="385" y="304">patience + target gates</text>
+  <rect class="box" x="513" y="254" width="132" height="68"/>
+  <text class="label" x="533" y="282">Adaptive budget</text>
+  <text class="small" x="533" y="304">extend if improving</text>
+
+  <rect class="panel" x="720" y="112" width="510" height="255"/>
+  <text class="section-title" x="744" y="144">Federated Medical Clients</text>
+  <rect class="box" x="746" y="168" width="138" height="142"/>
+  <text class="label" x="766" y="196">Hospital 1</text>
+  <text class="small" x="766" y="221">local split</text>
+  <text class="small" x="766" y="243">train/evaluate</text>
+  <text class="small" x="766" y="265">update delta</text>
+
+  <rect class="box" x="910" y="168" width="138" height="142"/>
+  <text class="label" x="930" y="196">Hospital i</text>
+  <text class="small" x="930" y="221">non-IID data</text>
+  <text class="small" x="930" y="243">local metrics</text>
+  <text class="small" x="930" y="265">contribution</text>
+
+  <rect class="box" x="1074" y="168" width="128" height="142"/>
+  <text class="label" x="1094" y="196">Hospital K</text>
+  <text class="small" x="1094" y="221">dropout / faults</text>
+  <text class="small" x="1094" y="243">auth status</text>
+  <text class="small" x="1094" y="265">reputation</text>
+
+  <rect class="box-green" x="790" y="318" width="370" height="42"/>
+  <text class="small" x="817" y="337">Privacy envelope: HMAC identity, DP clipping/noise</text>
+  <text class="small" x="875" y="353">optional secure aggregation</text>
+
+  <rect class="panel" x="340" y="422" width="420" height="195"/>
+  <text class="section-title" x="364" y="454">Strategy and Aggregation</text>
+  <rect class="box-amber" x="365" y="478" width="170" height="76"/>
+  <text class="label" x="386" y="508">FedAvg / FedProx</text>
+  <text class="small" x="386" y="529">sample-weighted aggregation</text>
+  <text class="small" x="386" y="546">proximal local objective</text>
+  <rect class="box-amber" x="558" y="478" width="177" height="76"/>
+  <text class="label" x="579" y="508">BC-CA-FedProx</text>
+  <text class="small" x="579" y="529">sample x contribution</text>
+  <text class="small" x="579" y="546">x reputation</text>
+  <rect class="box-green" x="365" y="568" width="370" height="30"/>
+  <text class="small" x="395" y="588">Aggregate accepted updates into next global model parameters</text>
+
+  <rect class="panel" x="820" y="422" width="410" height="195"/>
+  <text class="section-title" x="844" y="454">Audit, Artifacts, and Data Products</text>
+  <rect class="box-red" x="845" y="478" width="164" height="78"/>
+  <text class="label" x="866" y="507">SQLite Ledger</text>
+  <text class="small" x="866" y="530">round metrics + client records</text>
+  <rect class="box-red" x="1036" y="478" width="164" height="78"/>
+  <text class="label" x="1057" y="507">Mock Audit Chain</text>
+  <text class="small" x="1057" y="530">hash-linked records</text>
+  <rect class="box-red" x="845" y="570" width="164" height="28"/>
+  <text class="small" x="875" y="589">encrypted NPZ artifacts</text>
+  <rect class="box-red" x="1036" y="570" width="164" height="28"/>
+  <text class="small" x="1066" y="589">optional Solidity lab</text>
+
+  <path class="arrow" d="M 282 209 C 305 209 318 205 340 205"/>
+  <path class="arrow-gray dashed" d="M 282 444 C 305 444 314 325 340 293"/>
+  <path class="arrow" d="M 645 205 C 676 205 688 205 720 205"/>
+  <path class="arrow-green" d="M 975 352 C 975 392 760 408 650 478"/>
+  <path class="arrow" d="M 550 367 C 550 388 550 402 550 422"/>
+  <path class="arrow" d="M 760 520 C 790 520 800 520 820 520"/>
+
+  <rect class="box" x="58" y="704" width="1164" height="54"/>
+  <line class="legend-line" x1="84" y1="729" x2="130" y2="729" stroke="#2563eb" marker-end="url(#arrow-blue)"/>
+  <text class="small" x="146" y="734">training/control flow</text>
+  <line class="legend-line" x1="308" y1="729" x2="354" y2="729" stroke="#0f766e" marker-end="url(#arrow-green)"/>
+  <text class="small" x="370" y="734">privacy-protected update flow</text>
+  <line class="legend-line dashed" x1="596" y1="729" x2="642" y2="729" stroke="#64748b" marker-end="url(#arrow-gray)"/>
+  <text class="small" x="658" y="734">observability and audit read path</text>
+  <text class="small" x="912" y="734">Core modules: data.py, model.py, training.py, strategy.py, ledger.py</text>
+</svg>

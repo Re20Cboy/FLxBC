@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">FLxBC neural model backends</title>
+  <desc id="desc">A compact academic-style diagram of the NumPy prototype backend, Tiny2DMedNet, and Tiny3DMedNet neural backends used by FLxBC.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+    </marker>
+    <style>
+      .bg { fill: #ffffff; }
+      .title { font: 700 32px Inter, Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 15px Inter, Arial, Helvetica, sans-serif; fill: #475569; }
+      .panel { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 1.2; rx: 10; }
+      .panel-title { font: 700 18px Inter, Arial, Helvetica, sans-serif; fill: #0f172a; }
+      .label { font: 600 13px Inter, Arial, Helvetica, sans-serif; fill: #111827; }
+      .small { font: 400 12px Inter, Arial, Helvetica, sans-serif; fill: #475569; }
+      .mono { font: 500 12px "SFMono-Regular", Consolas, monospace; fill: #334155; }
+      .block { fill: #ffffff; stroke: #94a3b8; stroke-width: 1.2; rx: 6; }
+      .conv { fill: #eff6ff; stroke: #93c5fd; stroke-width: 1.2; rx: 6; }
+      .pool { fill: #ecfdf5; stroke: #5eead4; stroke-width: 1.2; rx: 6; }
+      .head { fill: #fffbeb; stroke: #fcd34d; stroke-width: 1.2; rx: 6; }
+      .arrow { stroke: #2563eb; stroke-width: 1.8; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1280" height="720"/>
+  <text class="title" x="56" y="58">Neural Backends Used in FLxBC</text>
+  <text class="subtitle" x="56" y="86">Lightweight models keep local training practical while separating 2D X-ray and 3D CT-volume workloads.</text>
+
+  <rect class="panel" x="56" y="130" width="322" height="470"/>
+  <text class="panel-title" x="82" y="164">NumPy Prototype</text>
+  <text class="small" x="82" y="190">Purpose: fast smoke tests and synthetic experiments</text>
+  <rect class="block" x="92" y="230" width="230" height="54"/>
+  <text class="label" x="113" y="260">Tabular / synthetic features</text>
+  <path class="arrow" d="M 207 284 L 207 318"/>
+  <rect class="conv" x="92" y="318" width="230" height="64"/>
+  <text class="label" x="126" y="346">Class prototypes</text>
+  <text class="mono" x="128" y="366">mean feature per class</text>
+  <path class="arrow" d="M 207 382 L 207 416"/>
+  <rect class="head" x="92" y="416" width="230" height="64"/>
+  <text class="label" x="123" y="445">Nearest-prototype logits</text>
+  <text class="small" x="123" y="464">minimal dependency backend</text>
+  <rect class="block" x="82" y="522" width="250" height="44"/>
+  <text class="small" x="103" y="548">Used for: demo, CI, quick logic checks</text>
+
+  <rect class="panel" x="426" y="130" width="380" height="470"/>
+  <text class="panel-title" x="452" y="164">Tiny2DMedNet</text>
+  <text class="small" x="452" y="190">Dataset path: PneumoniaMNIST, chest X-ray slices</text>
+  <rect class="block" x="470" y="218" width="292" height="42"/>
+  <text class="mono" x="511" y="244">input: 1 x 28 x 28</text>
+  <path class="arrow" d="M 616 260 L 616 288"/>
+  <rect class="conv" x="470" y="288" width="292" height="50"/>
+  <text class="label" x="510" y="318">Conv2D 1 to 12 + BN + SiLU</text>
+  <path class="arrow" d="M 616 338 L 616 366"/>
+  <rect class="conv" x="470" y="366" width="292" height="50"/>
+  <text class="label" x="491" y="396">DepthwiseSeparableConv2D 12 to 24, s=2</text>
+  <path class="arrow" d="M 616 416 L 616 444"/>
+  <rect class="conv" x="470" y="444" width="292" height="50"/>
+  <text class="label" x="491" y="474">DepthwiseSeparableConv2D 24 to 32, s=2</text>
+  <path class="arrow" d="M 616 494 L 616 522"/>
+  <rect class="pool" x="470" y="522" width="136" height="44"/>
+  <text class="label" x="496" y="549">GAP2D</text>
+  <rect class="head" x="626" y="522" width="136" height="44"/>
+  <text class="label" x="648" y="549">Linear to C</text>
+  <path class="arrow" d="M 606 544 L 626 544"/>
+
+  <rect class="panel" x="854" y="130" width="370" height="470"/>
+  <text class="panel-title" x="880" y="164">Tiny3DMedNet</text>
+  <text class="small" x="880" y="190">Dataset path: NoduleMNIST3D, volumetric CT patches</text>
+  <rect class="block" x="898" y="208" width="284" height="40"/>
+  <text class="mono" x="933" y="233">input: 1 x D x H x W</text>
+  <path class="arrow" d="M 1040 248 L 1040 272"/>
+  <rect class="conv" x="898" y="272" width="284" height="46"/>
+  <text class="label" x="936" y="301">Conv3D 1 to 12 + BN + SiLU</text>
+  <path class="arrow" d="M 1040 318 L 1040 342"/>
+  <rect class="conv" x="898" y="342" width="284" height="46"/>
+  <text class="label" x="920" y="371">DepthwiseSeparableConv3D 12 to 24</text>
+  <path class="arrow" d="M 1040 388 L 1040 412"/>
+  <rect class="conv" x="898" y="412" width="284" height="46"/>
+  <text class="label" x="920" y="441">DepthwiseSeparableConv3D 24 to 32</text>
+  <path class="arrow" d="M 1040 458 L 1040 482"/>
+  <rect class="conv" x="898" y="482" width="284" height="46"/>
+  <text class="label" x="920" y="511">DepthwiseSeparableConv3D 32 to 48</text>
+  <path class="arrow" d="M 1040 528 L 1040 552"/>
+  <rect class="pool" x="898" y="552" width="136" height="44"/>
+  <text class="label" x="924" y="579">GAP3D</text>
+  <rect class="head" x="1054" y="552" width="128" height="44"/>
+  <text class="label" x="1076" y="579">Linear to C</text>
+  <path class="arrow" d="M 1034 574 L 1054 574"/>
+
+  <rect class="block" x="130" y="630" width="1010" height="42"/>
+  <text class="small" x="156" y="656">Shared training interface: local optimizer -> parameter delta -> privacy envelope -> FL strategy aggregation -> global model update.</text>
+</svg>

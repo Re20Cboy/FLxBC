@@ -1,0 +1,33 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ruff_cache/
+
+# Package managers
+node_modules/
+uv.lock
+
+# Generated data & artifacts
+data/
+artifacts/
+cache/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets & environment
+.env
+.env.*
+*.pem
+*.key
